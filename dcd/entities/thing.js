@@ -19,12 +19,12 @@ var Thing = /** @class */ (function () {
                 else {
                     if (property.constructor === {}.constructor) {
                         _this.thing_properties.push(new property_1.Property({
-                            property_id: property.id,
-                            property_name: property.name,
-                            property_description: property.thing_description,
-                            property_type: property.type,
-                            property_dimensions: property.dimensions,
-                            property_values: property.values
+                            property_id: property['id'],
+                            property_name: property['name'],
+                            property_description: property['description'],
+                            property_type: property['type'],
+                            property_dimensions: property['dimensions'],
+                            property_values: property['values']
                         }));
                     }
                 }
@@ -91,7 +91,7 @@ var Thing = /** @class */ (function () {
                 _this.thing_properties.push(property);
             }
             else {
-                console.log(property.property_id, 'already there 1');
+                console.log(property.property_id, 'already there');
             }
         });
     };
@@ -111,3 +111,4 @@ var Thing = /** @class */ (function () {
     return Thing;
 }());
 exports.Thing = Thing;
+//TODO : throw les erreurs à la construction.

@@ -27,12 +27,12 @@ export class Thing implements IThing {
                 }else{
                     if(property.constructor === {}.constructor){
                         this.thing_properties.push(new Property({
-                            property_id :property.id,
-                            property_name : property.name,
-                            property_description : property.thing_description,
-                            property_type : property.type,
-                            property_dimensions : property.dimensions,
-                            property_values : property.values
+                            property_id :property['id'],
+                            property_name : property['name'],
+                            property_description : property['description'],
+                            property_type : property['type'],
+                            property_dimensions : property['dimensions'],
+                            property_values : property['values']
                         }
                         ))
                     }
