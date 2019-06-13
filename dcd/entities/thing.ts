@@ -1,6 +1,6 @@
 import { Property } from './property'
 import  * as http from '../helpers/http'
-import { throwStatement } from 'babel-types';
+
 interface IThing {
     thing_id : string;
     thing_token : string
@@ -47,7 +47,7 @@ export class Thing implements IThing {
             this.thing_name = body.thing.name
             this.thing_description = body.thing.description
             this.thing_type =  body.thing.type
-            this.add_properties(body.thing.properties) // this has to be update_property : check if a property exist
+            this.update_properties(this.array_to_properties(body.thing.properties)) // this has to be update_property : check if a property exist
         })
     }
     json(){
@@ -56,39 +56,68 @@ export class Thing implements IThing {
         name : this.thing_name,
         type : this.thing_type,
         description: this.thing_description,
-        properties : this.array_properties()
+        properties : this.properties_to_array()
     }
     }
 
     //create a callback function
-    array_properties():Array<any>{
-        //this.thing_properties.forEach
-        return []
+    private properties_to_array():Array<any>{
+        var res = []
+        for (var i = 0; i <= this.thing_properties.length; i ++) {
+            if(i < this.thing_properties.length){
+                const property = this.thing_properties[i]
+                res.push(property.json())
+            }else{
+                return res
+            }
+          }
     }
 
-    //addproperty
-    add_properties(properties:Array<any>){
-        properties.forEach(property => {
-            if(property instanceof Property){
-                this.thing_properties.push(property)
-            }else{
+    private array_to_properties(array:Array<any>):Array<Property>{
+        var res = []
+        for (var i = 0; i <= array.length; i ++) {
+            if(i < array.length){
+                const property = array[i]
                 if(property.constructor === {}.constructor){
-                    this.thing_properties.push(new Property({
-                        property_id :property.id,
-                        property_name : property.name,
-                        property_description : property.thing_description,
-                        property_type : property.type,
-                        property_dimensions : property.dimensions,
-                        property_values : property.values
-                    }
-                    ))
+                res.push(new Property({
+                    property_id :   property.id,
+                    property_name : property.name,
+                    property_description : property.description,
+                    property_type : property.type,
+                    property_dimensions : property.dimensions,
+                    property_values : property.values
+                }))
                 }
+           }else{
+            return res
             }
+        }
+    }
+
+
+    private update_properties(properties:Array<Property>){
+        properties.forEach(property => {
+                    if(!this.contains(property.property_id)){
+                        this.thing_properties.push(property)
+                    }else{
+                        console.log(property.property_id,'already there')
+                    }
         })
     }
 
+    private contains(property_id:string):boolean{
+        var res = false
+        for (var i = 0; i <= this.thing_properties.length; i ++) {
+            if(i < this.thing_properties.length){
+                if(property_id == this.thing_properties[i].property_id){
+                    res = true
+                }
+            }else{
+                return res
+            }
+          }
+    }
 }
 
-export class ThingCredentials{
-    
-}
+
+//TODO : throw les erreurs à la construction.

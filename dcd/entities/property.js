@@ -4,7 +4,6 @@ var Property = /** @class */ (function () {
     function Property(params) {
         this.property_dimensions = [];
         this.property_values = [];
-        // if(json_property === undefined){
         this.property_id = params['property_id'];
         this.property_name = params['property_name'];
         this.property_description = params['property_description'];
@@ -28,41 +27,38 @@ var Property = /** @class */ (function () {
     return Property;
 }());
 exports.Property = Property;
-var PropertyType = /** @class */ (function () {
-    function PropertyType() {
-        this.ONE_DIMENSION = "1D";
-        this.TWO_DIMENSIONS = "2D";
-        this.THREE_DIMENSIONS = "3D";
-        this.FOUR_DIMENSIONS = "4D";
-        this.FIVE_DIMENSIONS = "5D";
-        this.SIX_DIMENSIONS = "6D";
-        this.SEVEN_DIMENSIONS = "7D";
-        this.EIGHT_DIMENSIONS = "8D";
-        this.NINE_DIMENSIONS = "9D";
-        this.TEN_DIMENSIONS = "10D";
-        this.ELEVEN_DIMENSIONS = "11D";
-        this.TWELVE_DIMENSIONS = "12D";
-        this.ACCELEROMETER = "ACCELEROMETER";
-        this.GYROSCOPE = "GYROSCOPE";
-        this.BINARY = "BINARY";
-        this.MAGNETIC_FIELD = "MAGNETIC_FIELD";
-        this.GRAVITY = "GRAVITY";
-        this.ROTATION_VECTOR = "ROTATION_VECTOR";
-        this.LIGHT = "LIGHT";
-        this.LOCATION = "LOCATION";
-        this.ALTITUDE = "ALTITUDE";
-        this.BEARING = "BEARING";
-        this.SPEED = "SPEED";
-        this.PRESSURE = "PRESSURE";
-        this.PROXIMITY = "PROXIMITY";
-        this.RELATIVE_HUMIDITY = "RELATIVE_HUMIDITY";
-        this.COUNT = "COUNT";
-        this.FORCE = "FORCE";
-        this.TEMPERATURE = "TEMPERATURE";
-        this.STATE = "STATE";
-        this.VIDEO = "VIDEO";
-        this.CLASS = "CLASS";
-    }
-    return PropertyType;
-}());
-exports.PropertyType = PropertyType;
+var PropertyType;
+(function (PropertyType) {
+    PropertyType["ONE_DIMENSION"] = "1D";
+    PropertyType["TWO_DIMENSIONS"] = "2D";
+    PropertyType["THREE_DIMENSIONS"] = "3D";
+    PropertyType["FOUR_DIMENSIONS"] = "4D";
+    PropertyType["FIVE_DIMENSIONS"] = "5D";
+    PropertyType["SIX_DIMENSIONS"] = "6D";
+    PropertyType["SEVEN_DIMENSIONS"] = "7D";
+    PropertyType["EIGHT_DIMENSIONS"] = "8D";
+    PropertyType["NINE_DIMENSIONS"] = "9D";
+    PropertyType["TEN_DIMENSIONS"] = "10D";
+    PropertyType["ELEVEN_DIMENSIONS"] = "11D";
+    PropertyType["TWELVE_DIMENSIONS"] = "12D";
+    PropertyType["ACCELEROMETER"] = "ACCELEROMETER";
+    PropertyType["GYROSCOPE"] = "GYROSCOPE";
+    PropertyType["BINARY"] = "BINARY";
+    PropertyType["MAGNETIC_FIELD"] = "MAGNETIC_FIELD";
+    PropertyType["GRAVITY"] = "GRAVITY";
+    PropertyType["ROTATION_VECTOR"] = "ROTATION_VECTOR";
+    PropertyType["LIGHT"] = "LIGHT";
+    PropertyType["LOCATION"] = "LOCATION";
+    PropertyType["ALTITUDE"] = "ALTITUDE";
+    PropertyType["BEARING"] = "BEARING";
+    PropertyType["SPEED"] = "SPEED";
+    PropertyType["PRESSURE"] = "PRESSURE";
+    PropertyType["PROXIMITY"] = "PROXIMITY";
+    PropertyType["RELATIVE_HUMIDITY"] = "RELATIVE_HUMIDITY";
+    PropertyType["COUNT"] = "COUNT";
+    PropertyType["FORCE"] = "FORCE";
+    PropertyType["TEMPERATURE"] = "TEMPERATURE";
+    PropertyType["STATE"] = "STATE";
+    PropertyType["VIDEO"] = "VIDEO";
+    PropertyType["CLASS"] = "CLASS";
+})(PropertyType = exports.PropertyType || (exports.PropertyType = {}));

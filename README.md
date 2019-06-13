@@ -29,6 +29,7 @@ In this file, add the following lines to import the definition of a Thing and Pr
 ```ts
 import {  Thing  } from '../entities/thing'
 import { Property } from '../entities/property'
+import { PropertyType } from '../entities/property'
 ```
 
 Then, we set the credential of our Thing. In Typescript/Javascript, it means we look at the environment variables to read the id and access token of our thing. To provide these information as environment variable, right click at the root of your project (left panel) and create a file ‘.env’.
@@ -58,4 +59,25 @@ const THING_TOKEN = process.env.THING_TOKEN;
 
 Note: In Javascript/Typescript, any line starting with a ‘/’ is a comment, to help understand what the code does but ignored by Javascript/Typescript when running the programme.
 
-Next, we can instantiate a Thing with the credentials. We store this object in a variable called ‘my_thing’, which we will use to manage our Thing on the DCD Hub.
+Next, we can instantiate a Thing with the credentials, with a JSON Object. We store this object in a variable called ‘my_thing’, which we will use to manage our Thing on the DCD Hub.
+
+```ts
+//Instantiate a thing with its credential
+var my_thing = new Thing({
+    thing_id : THING_ID,
+    thing_token : THING_TOKEN,
+})
+```
+
+Notes that all the entities parameters starts with her name, here we have *thing_id* for the things id, for persons it would be *person_id* and *property_id* for properties.
+
+The following line ‘read’ the details of our Thing, meaning it connects the DCD Hub and asks for the information related to this Thing.
+
+```ts
+//We can fetch the details of our thing
+setTimeout(function(){ 
+console.log(my_thing.json())
+}, 3000)
+```
+
+Notes that Typescript and Javascript are synchronous so we have to make a Timeout to show data.

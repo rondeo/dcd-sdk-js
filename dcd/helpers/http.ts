@@ -58,14 +58,6 @@ export function FillArrayThings(things : Thing[],authorization : string) : void{
             thing_type : body.thing.type,
             thing_properties : body.thing.properties
           }))
-
-          /*things.push(new Thing(
-            body.thing.id,
-            body.thing.name,
-            body.thing.description,
-            body.thing.type,
-            body.thing.properties
-          ))*/
         })
       });
     })

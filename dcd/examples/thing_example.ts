@@ -1,6 +1,7 @@
 //import {  Thing  } from '../entities/thing'
 import {  Thing  } from '../entities/thing'
 import { Property } from '../entities/property'
+import { PropertyType } from '../entities/property'
 import * as dotenv from 'dotenv'
 import * as findconfig from 'find-config'
 
@@ -19,6 +20,5 @@ var my_thing = new Thing({
 
 my_thing.read()
 setTimeout(function(){ 
-//console.log(my_thing.thing_properties)
-console.log(my_thing.json())
+    console.log(my_thing.json())
 }, 3000)
