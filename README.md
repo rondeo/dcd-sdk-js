@@ -15,8 +15,8 @@ Type in the following command
 `npm install -g typescript`
 
 ### Step 2 : Node JS dependencies
-`cd dcd-sdk-js`
-`npm install`
+- `cd dcd-sdk-js`
+- `npm install`
 
 ### Step 3 Connecting a Thing to the Hub
 
@@ -55,3 +55,7 @@ dotenv.config({ path: findconfig('.env') })
 const THING_ID = process.env.THING_ID;
 const THING_TOKEN = process.env.THING_TOKEN;
 ```
+
+Note: In Javascript/Typescript, any line starting with a ‘/’ is a comment, to help understand what the code does but ignored by Javascript/Typescript when running the programme.
+
+Next, we can instantiate a Thing with the credentials. We store this object in a variable called ‘my_thing’, which we will use to manage our Thing on the DCD Hub.

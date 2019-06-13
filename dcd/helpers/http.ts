@@ -11,7 +11,7 @@ import * as fetch from 'node-fetch'
  * @returns {Promise<>}
  */
 export const makeDataRequest = (url, authorization) => fetch(
-    'https://cors-anywhere.herokuapp.com/'+url, {
+    url, {
     headers: {Authorization: 'bearer ' + authorization}
   })
     .then((res) => {
@@ -20,7 +20,7 @@ export const makeDataRequest = (url, authorization) => fetch(
 
 export const RetrieveThings = (authorization:string) => fetch(
     //.env
-    'https://cors-anywhere.herokuapp.com/https://dwd.tudelft.nl/api/things', {
+    'https://dwd.tudelft.nl/api/things', {
     headers: {Authorization: 'bearer ' + authorization}
   })
     .then((res) => {
@@ -29,7 +29,7 @@ export const RetrieveThings = (authorization:string) => fetch(
 
 export const RetrieveThing = (authorization : string,thingId : string)=>  fetch(
     //.env
-    'https://cors-anywhere.herokuapp.com/https://dwd.tudelft.nl/api/things/'+thingId, {
+    'https://dwd.tudelft.nl/api/things/'+thingId, {
     headers: {Authorization: 'bearer ' + authorization}
   })
     .then((res) => {
@@ -38,7 +38,7 @@ export const RetrieveThing = (authorization : string,thingId : string)=>  fetch(
 
 export const RetrieveProperty = (authorization : string,thingId : string, propertyId: string )=>  fetch(
         //.env
-        'https://cors-anywhere.herokuapp.com/https://dwd.tudelft.nl/api/things/'+thingId+'/properties'+'/'+propertyId, {
+        'https://dwd.tudelft.nl/api/things/'+thingId+'/properties'+'/'+propertyId, {
         headers: {Authorization: 'bearer ' + authorization}
       })
         .then((res) => {
@@ -51,13 +51,21 @@ export function FillArrayThings(things : Thing[],authorization : string) : void{
       body.things.forEach(thing => {
         RetrieveThing(authorization,thing.id)
         .then((body) => {
-          things.push(new Thing(
+          things.push(new Thing({
+            thing_id : body.thing.id,
+            thing_name : body.thing.name,
+            thing_descritpion : body.thing.description,
+            thing_type : body.thing.type,
+            thing_properties : body.thing.properties
+          }))
+
+          /*things.push(new Thing(
             body.thing.id,
             body.thing.name,
             body.thing.description,
             body.thing.type,
             body.thing.properties
-          ))
+          ))*/
         })
       });
     })
@@ -66,7 +74,7 @@ export function FillArrayThings(things : Thing[],authorization : string) : void{
 
 export const RetrieveUserId = (authorization:string) =>  fetch(
   //.env
-  'https://cors-anywhere.herokuapp.com/https://dwd.tudelft.nl/userinfo', {
+  'https://dwd.tudelft.nl/userinfo', {
   headers: {Authorization: 'bearer ' + authorization}
 })
   .then((res) => {
@@ -75,7 +83,7 @@ export const RetrieveUserId = (authorization:string) =>  fetch(
 
 export const RetrieveUserInfo = (authorization:string,UserId: string) =>  fetch(
   //.env
-  'https://cors-anywhere.herokuapp.com/https://dwd.tudelft.nl/api/persons/'+UserId, {
+  'https://dwd.tudelft.nl/api/persons/'+UserId, {
   headers: {Authorization: 'bearer ' + authorization}
 })
   .then((res) => {

@@ -6,32 +6,25 @@ export class Property {
     property_dimensions: any[] = [];
     property_values: any[] = [];
 
-    constructor(
-        property_id:string,
-        property_name:string,
-        property_description:string,
-        property_type: string,
-        property_dimensions: any[],
-        property_values: any[],
-        //json_property:{},
-        ) {
+    constructor(params : {}) {
        // if(json_property === undefined){
-            this.property_id = property_id
-            this.property_name = property_name
-            this.property_description = property_description
-            this.property_type = property_type;
-            this.property_dimensions = property_dimensions;
-            this.property_values = property_values;
-       /* }else{
-            console.log('json_property')
-            this.property_id = json_property['id']
-            this.property_name = json_property['name']
-            this.property_description = json_property['value']
-            this.property_type = json_property['type']
-            this.property_dimensions = json_property['dimensions']
-            this.property_values = json_property['values']
-        }*/
+            this.property_id = params['property_id']
+            this.property_name = params['property_name']
+            this.property_description = params['property_description']
+            this.property_type = params['property_type'];
+            this.property_dimensions = params['property_dimensions'];
+            this.property_values = params['property_values'];
+    }
 
+    json(){
+        return {
+            id : this.property_id,
+            name : this.property_name,
+            type : this.property_type,
+            description: this.property_description,
+            dimensions: this.property_dimensions,
+            value : this.property_values
+        }
     }
 
     update_value(values:any[]){
