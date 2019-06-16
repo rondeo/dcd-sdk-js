@@ -20,5 +20,14 @@ var my_thing = new Thing({
 
 my_thing.read()
 setTimeout(function(){ 
-    console.log(my_thing.json())
+console.log(my_thing.json())
 }, 3000)
+
+//const my_thing2 = new Thing(undefined)
+
+/*    //console.log(my_thing.find_or_create_property('test_location',PropertyType.ALTITUDE))
+    //console.log(my_thing.find_or_create_property('teststion',PropertyType.ALTITUDE))
+    var my_property_find = my_thing.find_or_create_property('test_location',PropertyType.ALTITUDE)
+    var my_property_create = my_thing.find_or_create_property('teststion',PropertyType.ALTITUDE)
+    console.log(my_property_find.json())
+    console.log(my_property_create.json())  */

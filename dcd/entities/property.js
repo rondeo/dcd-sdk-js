@@ -4,12 +4,17 @@ var Property = /** @class */ (function () {
     function Property(params) {
         this.property_dimensions = [];
         this.property_values = [];
-        this.property_id = params['property_id'];
-        this.property_name = params['property_name'];
-        this.property_description = params['property_description'];
-        this.property_type = params['property_type'];
-        this.property_dimensions = params['property_dimensions'];
-        this.property_values = params['property_values'];
+        if (params === undefined) {
+            throw new TypeError('Property : constructor param is undefined');
+        }
+        else {
+            this.property_id = params['property_id'];
+            this.property_name = params['property_name'];
+            this.property_description = params['property_description'];
+            this.property_type = params['property_type'];
+            this.property_dimensions = params['property_dimensions'];
+            this.property_values = params['property_values'];
+        }
     }
     Property.prototype.json = function () {
         return {

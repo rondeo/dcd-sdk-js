@@ -81,3 +81,5 @@ console.log(my_thing.json())
 ```
 
 Notes that Typescript and Javascript are synchronous so we have to make a Timeout to show data.
+
+To create a Property for our Thing, we can use the method find_or_create_property(). This method takes a property name and a property type as parameters, search for a property of the same name in the Thing, and return the property. If no property is found, it requests the creation of a new one on the DCD Hub and returns it. In the following example, we create a property with the name ‘My Random Property’ of type ‘THREE_DIMENSIONS’, meaning that every data point will be compose of three values.

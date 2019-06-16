@@ -35,6 +35,28 @@ export const RetrieveThing = (authorization : string,thingId : string)=>  fetch(
     .then((res) => {
         return res.ok ? res.json() : res.text()
     })
+  
+export async function GetThing (authorization : string,thingId : string) {
+      try {
+        const resp = await fetch(
+          //.env
+          'https://dwd.tudelft.nl/api/things/'+thingId, {
+          headers: {Authorization: 'bearer ' + authorization}
+        }).then((res) => {
+          //return res.ok ? res.json() : res.text()
+      }).then((body) => {
+        if(body.thing === undefined){
+            throw new TypeError('body is undifined : no thing found, check if the id and token of your thing are valid')
+        }else{
+           return body
+        }
+      })
+        console.log(resp)
+        return resp
+      } catch (err) {
+           console.log(err)
+        }
+   }
 
 export const RetrieveProperty = (authorization : string,thingId : string, propertyId: string )=>  fetch(
         //.env
@@ -44,25 +66,6 @@ export const RetrieveProperty = (authorization : string,thingId : string, proper
         .then((res) => {
             return res.ok ? res.json() : res.text()
         })
-// le tableau doit être initialisé et vide
-export function FillArrayThings(things : Thing[],authorization : string) : void{
-    RetrieveThings(authorization)
-    .then((body) => {
-      body.things.forEach(thing => {
-        RetrieveThing(authorization,thing.id)
-        .then((body) => {
-          things.push(new Thing({
-            thing_id : body.thing.id,
-            thing_name : body.thing.name,
-            thing_descritpion : body.thing.description,
-            thing_type : body.thing.type,
-            thing_properties : body.thing.properties
-          }))
-        })
-      });
-    })
-    .catch(err => console.log(err));
-}
 
 export const RetrieveUserId = (authorization:string) =>  fetch(
   //.env
